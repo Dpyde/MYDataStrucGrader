@@ -8,23 +8,25 @@ template <typename T>
 template <typename Comp>
 T CP::queue<T>::min_element(std::vector<size_t> pos, Comp comp) const
 {
-  T result;
-  int count=0;
+  T res = T();
+  int count = 0;
+
   for (auto &&i : pos)
   {
-     if (i < mSize)
-    {if (count == 0)
-    {result=mData[i];
-    }
-
-    else if (comp(mData[i], result))
+    if (i < mSize)
+    {
+      if (count = 0)
       {
-        result = mData[i];
+         res = mData[(mFront + i) % mCap];
+        count++;//no more initialized
       }
-      count++;
+      else if (comp(mData[(mFront + i) % mCap], res))
+      {
+        res = mData[(mFront + i) % mCap];
+      }
     }
   }
-  return result;
+  return res;
 }
 
 #endif
