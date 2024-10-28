@@ -7,7 +7,9 @@
 
 template <typename T>
 void CP::queue<T>::back_to_front() {
-  
+  mFront=(mFront-1+mCap)%mCap;
+mData[mFront%mCap]=mData[(mFront+mSize)%mCap];
+;
 }
 
 #endif
